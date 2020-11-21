@@ -18,6 +18,12 @@ int main()
     ls.erase(10);
     std::cout << std::endl;
     ls.printList();
+    std::string fileName{"file.txt"};
+    ls.listFile(fileName);
+    std::string myfile{"myfile.txt"};
+    ls.fileList(myfile, back);
+    std::cout << std::endl;
+    ls.printList();
 
     return 0;
 }

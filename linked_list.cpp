@@ -15,6 +15,48 @@ void LinkedList::printList() const
         ++count;
     } while (count < index);
 }
+void LinkedList::listFile(const std::string &fileName) const
+{
+    std::ofstream ofs(fileName);
+    if (!ofs)
+    {
+        std::cerr << "Unable to open " << __PRETTY_FUNCTION__ << strerror(errno);
+    }
+    unsigned count = 0;
+    Node *current = first;
+    do
+    {
+        ofs << current->data << ' ';
+        current = current->next;
+        ++count;
+    } while (count < index);
+}
+void LinkedList::fileList(const std::string &fileName, OrderSide order)
+{
+    std::ifstream ifs(fileName);
+    if (!ifs)
+    {
+        std::cerr << "Unable to open " << __PRETTY_FUNCTION__ << strerror(errno);
+    }
+    while (true)
+    {
+        int val{0};
+        ifs >> val;
+        if (ifs.eof())
+            break;
+        switch (order)
+        {
+        case front:
+            push_front(val);
+            break;
+        case back:
+            push_back(val);
+
+        default:
+            break;
+        }
+    }
+}
 void LinkedList::push_back(const int value)
 {
     if (first == nullptr)
